@@ -20,7 +20,6 @@ llama_cmd = os.environ.get('LLAMA_CMD', "/server --host 0.0.0.0 --threads 8 -ngl
 sub = subprocess.Popen(llama_cmd.split(' '))
 
 ## load your model(s) into vram here
-
 url = "http://0.0.0.0:8080/completion"
 async def handler(event):
   print(event)
