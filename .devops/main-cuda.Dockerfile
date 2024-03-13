@@ -9,8 +9,9 @@ ARG BASE_CUDA_RUN_CONTAINER=nvidia/cuda:${CUDA_VERSION}-runtime-ubuntu${UBUNTU_V
 FROM ${BASE_CUDA_DEV_CONTAINER} as build
 
 # Unless otherwise specified, we make a fat build.
-ARG CUDA_DOCKER_ARCH=all
+# ARG CUDA_DOCKER_ARCH=all
 # ARG CUDA_DOCKER_ARCH=sm_86
+ARG CUDA_DOCKER_ARCH=sm_80
 
 RUN apt-get update && \
     apt-get install -y build-essential git wget
@@ -50,5 +51,5 @@ COPY --from=build /model.gguf model.gguf
 COPY --from=build /app/models models
 
 # CMD ["/bin/sh", "-c", "/server --model model.gguf --threads $(nproc) -ngl 99 -np $(nproc) -cb"]
-# CMD ["/server --host 0.0.0.0 --threads 8 -ngl 999 -np 8 -cb -m model.gguf -c 16384"]
-CMD [ "python3", "-u", "/handler.py" ]
+CMD ["/server --host 0.0.0.0 --threads 8 -ngl 999 -np 8 -cb -m model.gguf -c 16384"]
+# CMD [ "python3", "-u", "/handler.py" ]
