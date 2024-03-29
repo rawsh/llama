@@ -23,7 +23,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       COMMIT_SHA: ${{ github.sha }}
-      MODEL_URL: "https://huggingface.co/TheBloke/neural-chat-7B-v3-1-GGUF/resolve/main/neural-chat-7b-v3-1.Q4_K_M.gguf"
+      MODEL_URL: "https://huggingface.co/LoneStriker/Starling-LM-7B-beta-GGUF/resolve/main/Starling-LM-7B-beta-Q4_K_M.gguf"
     strategy:
       matrix:
         config:
